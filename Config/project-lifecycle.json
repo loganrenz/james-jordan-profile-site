@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "name": "James Jordan Profile",
+    "classification": "application",
+    "lifecycle": "active"
+  },
+  "nativeManifests": {
+    "coolifyDesiredState": "Config/coolify-app.json"
+  },
+  "delivery": {
+    "source": "local",
+    "ci": "github-hosted",
+    "deploy": "coolify"
+  }
+}

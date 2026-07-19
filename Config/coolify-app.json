@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "product": {
+    "name": "James Jordan Profile",
+    "repository": "local/james-jordan-profile-site",
+    "surface": "coolify-app",
+    "description": "Editorial professional profile for James Jordan."
+  },
+  "image": {
+    "registry": "ghcr.io",
+    "repository": "narduk/james-jordan-profile-site",
+    "digestAlgorithm": "sha256",
+    "tagStrategy": "content-digest",
+    "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "build": {
+      "context": "/",
+      "dockerfile": "/Dockerfile",
+      "buildArgReferences": ["BUILD_REVISION"]
+    }
+  },
+  "coolify": {
+    "projectName": "Apps",
+    "serverName": "localhost",
+    "resourceKind": "application",
+    "resourceReference": "james-jordan-profile"
+  },
+  "deployment": {
+    "strategy": "immutable-image-digest",
+    "desiredStateManifest": "Config/coolify-app.json",
+    "autoDeploy": false
+  },
+  "environments": [
+    {
+      "name": "production",
+      "coolifyEnvironment": "production",
+      "routeUrl": "https://james.nard.uk",
+      "exposure": "public"
+    }
+  ],
+  "healthCheck": {
+    "enabled": true,
+    "path": "/healthz",
+    "port": "3000",
+    "method": "GET",
+    "scheme": "http",
+    "expectedStatus": 200,
+    "expectedBodyContains": "ok"
+  },
+  "userFlow": {
+    "name": "profile renders",
+    "path": "/",
+    "method": "GET",
+    "expectedStatus": 200,
+    "expectedBodyContains": "James Jordan"
+  },
+  "rollback": {
+    "strategy": "prior-digest-no-rebuild",
+    "retainedDigests": 5
+  },
+  "secretReferences": [],
+  "coolifyResources": [
+    {"kind": "coolify-application", "reference": "james-jordan-profile", "role": "production-service"},
+    {"kind": "image-repository", "reference": "ghcr.io/narduk/james-jordan-profile-site", "role": "oci-image"},
+    {"kind": "route", "reference": "james.nard.uk", "role": "production-route"},
+    {"kind": "desired-state", "reference": "Config/coolify-app.json", "role": "provisioner-manifest"}
+  ]
+}
