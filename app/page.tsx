@@ -47,6 +47,33 @@ const strengths = [
   ["04", "Visible ownership", "Communication studies, marketing, event communications, and member-facing updates all reward the same behavior: explain clearly, own the issue, and follow through."],
 ];
 
+const socialPosts = [
+  {
+    platform: "Instagram / Balcones Country Club",
+    date: "Public club reel",
+    title: "A clubhouse built around the moment",
+    text: "The club’s public reel names James Jordan in a clubhouse reopening update, with a made-to-order crêpe station called out as part of the return.",
+    href: "https://www.instagram.com/reel/DHv62-hMxLP/",
+    action: "Open the reel",
+  },
+  {
+    platform: "Balcones Country Club",
+    date: "Meet the team",
+    title: "The person behind the welcome",
+    text: "The club’s staff directory identifies James as Clubhouse Manager and places his work inside the daily member experience.",
+    href: "https://www.balconescountryclub.com/home-page/personnel/james-jordan",
+    action: "View the profile",
+  },
+  {
+    platform: "Instagram / Balcones Country Club",
+    date: "Club social feed",
+    title: "A visible rhythm of club life",
+    text: "Follow the official feed for the public-facing rhythm around events, food, golf, and the community James helps welcome.",
+    href: "https://www.instagram.com/balconescountryclub/",
+    action: "Follow the feed",
+  },
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -63,7 +90,7 @@ export default function Home() {
           <span className="sr-only">Toggle navigation</span><i /><i /><i />
         </button>
         <nav id="primary-nav" className={menuOpen ? "primary-nav is-open" : "primary-nav"} aria-label="Primary navigation">
-          {["Profile", "Experience", "Strengths", "Perspective", "Sources"].map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={closeMenu}>{item}</a>)}
+          {["Profile", "Experience", "Social", "Strengths", "Perspective", "Sources"].map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={closeMenu}>{item}</a>)}
         </nav>
       </header>
 
@@ -80,10 +107,10 @@ export default function Home() {
           <div className="portrait-wrap">
             <div className="portrait-card">
               <div className="portrait-topline"><span>PROFILE / 2026</span><span className="status"><i /> Current</span></div>
-              <div className="portrait-art"><div className="sun" /><div className="hill hill-one" /><div className="hill hill-two" /><div className="clubhouse"><span /><span /><span /></div><div className="monogram">JJ</div></div>
+              <div className="portrait-art portrait-photo"><img src="/james-jordan.jpg" alt="James Jordan on the grounds of Balcones Country Club" /><div className="photo-wash" /><span className="photo-label">Balcones / Austin</span></div>
               <div className="portrait-meta"><div><small>Current focus</small><strong>Operations +<br />member experience</strong></div><b>01</b></div>
             </div>
-            <p className="portrait-caption">No likeness is fabricated here. An authorized headshot can replace this monogram panel.</p>
+            <p className="portrait-caption">Photograph published by Balcones Country Club. <a href="https://www.balconescountryclub.com/home-page/personnel/james-jordan" target="_blank" rel="noreferrer">View source ↗</a></p>
           </div>
         </div>
         <div className="hero-stamp" aria-hidden="true">AUSTIN <span>•</span> TX</div>
@@ -101,7 +128,14 @@ export default function Home() {
         <div className="shell experience-layout"><div className="experience-intro"><div className="section-label">02 / Publicly listed experience</div><h2>A compact career path with unusually useful overlap.</h2><p>The dates and titles below reflect the public résumé information supplied for this profile. Overlapping dates are retained rather than “cleaned up.”</p><a className="text-link" href="#sources">How the sourcing is handled <span>↘</span></a></div><ol className="timeline" aria-label="James Jordan career timeline">{experiences.map((item, index) => <li key={item.role}><div className="timeline-index">0{index + 1}</div><div className="timeline-card"><div className="timeline-top"><span>{item.date}</span><b className={index === 0 ? "current" : ""}>{item.label}</b></div><h3>{item.role}</h3><p className="organization">{item.organization}</p><p>{item.text}</p></div></li>)}</ol></div>
       </section>
 
-      <section className="section strengths-section" id="strengths"><div className="shell"><div className="strengths-heading"><div><div className="section-label">03 / Why he may be effective</div><h2>Transferable skills<br /><em>that compound.</em></h2></div><p>This section is analysis—not a claim about duties that have not been publicly documented.</p></div><div className="strength-grid">{strengths.map(([number, title, text]) => <article key={number}><span className="strength-index">{number}</span><div className="strength-icon">✦</div><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+      <section className="section social-section" id="social">
+        <div className="shell">
+          <div className="social-heading"><div><div className="section-label">03 / In the public feed</div><h2>Small signals<br /><em>of clubhouse life.</em></h2></div><p>Selected public links from Balcones Country Club’s website and social presence. The cards summarize each source; they are not quoted endorsements.</p></div>
+          <div className="social-grid">{socialPosts.map((post, index) => <article className="social-card" key={post.title}><div className={`social-card-image social-card-image-${index + 1}`}>{index === 0 ? <img src="/james-jordan.jpg" alt="James Jordan at Balcones Country Club" /> : <span>{index === 1 ? "JJ" : "BC"}</span>}<b>{post.platform.split(" /")[0]}</b></div><div className="social-card-body"><div className="social-card-meta"><span>{post.date}</span><span>↗</span></div><h3>{post.title}</h3><p>{post.text}</p><a className="text-link" href={post.href} target="_blank" rel="noreferrer">{post.action} <span>↗</span></a></div></article>)}</div>
+        </div>
+      </section>
+
+      <section className="section strengths-section" id="strengths"><div className="shell"><div className="strengths-heading"><div><div className="section-label">04 / Why he may be effective</div><h2>Transferable skills<br /><em>that compound.</em></h2></div><p>This section is analysis—not a claim about duties that have not been publicly documented.</p></div><div className="strength-grid">{strengths.map(([number, title, text]) => <article key={number}><span className="strength-index">{number}</span><div className="strength-icon">✦</div><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
 
       <section className="perspective-section" id="perspective"><div className="shell perspective-inner"><div className="section-label">04 / The through-line</div><blockquote>“The common thread is not a job title. It is the ability to make a complex experience feel clear, cared for, and under control.”</blockquote><p>That is the most useful way to read the résumé: not as a straight line, but as a stack of adjacent experiences that now meet in one visible place.</p></div></section>
 

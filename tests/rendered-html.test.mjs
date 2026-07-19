@@ -20,6 +20,9 @@ test("renders the James Jordan profile", async () => {
   assert.match(html, /<title>James Jordan \| Clubhouse Operations &amp; Member Experience<\/title>/i);
   assert.match(html, /Clubhouse Manager/);
   assert.match(html, /Balcones Country Club/);
+  assert.match(html, /james-jordan\.jpg/);
+  assert.match(html, /instagram\.com\/reel\/DHv62-hMxLP/);
+  assert.match(html, /In the public feed/);
   assert.match(html, /Transferable skills/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
