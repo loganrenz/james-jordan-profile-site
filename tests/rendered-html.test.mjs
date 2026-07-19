@@ -18,6 +18,10 @@ test("renders the James Jordan profile", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
   assert.match(html, /<title>James Jordan \| Clubhouse Operations &amp; Member Experience<\/title>/i);
+  assert.match(html, /property="og:image" content="https:\/\/james\.nard\.uk\/james-jordan-og\.png"/i);
+  assert.match(html, /property="og:image:width" content="1200"/i);
+  assert.match(html, /property="og:image:height" content="630"/i);
+  assert.match(html, /name="twitter:card" content="summary_large_image"/i);
   assert.match(html, /Clubhouse Manager/);
   assert.match(html, /Balcones Country Club/);
   assert.match(html, /james-jordan\.jpg/);
