@@ -8,7 +8,7 @@
   },
   "image": {
     "registry": "ghcr.io",
-    "repository": "narduk/james-jordan-profile-site",
+    "repository": "loganrenz/james-jordan-profile-site",
     "digestAlgorithm": "sha256",
     "tagStrategy": "content-digest",
     "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
