@@ -24,7 +24,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: docker/build-push-action@v6
+      - id: build
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
@@ -32,3 +33,12 @@ jobs:
           labels: |
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+
+      - name: Publish immutable digest alias
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          digest_hex="${IMAGE_DIGEST#sha256:}"
+          docker buildx imagetools create \
+            --tag "${IMAGE_NAME}:sha256-${digest_hex}" \
+            "${IMAGE_NAME}@${IMAGE_DIGEST}"
