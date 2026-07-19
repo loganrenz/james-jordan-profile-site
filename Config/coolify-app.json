@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "product": {
     "name": "James Jordan Profile",
-    "repository": "local/james-jordan-profile-site",
+    "repository": "loganrenz/james-jordan-profile-site",
     "surface": "coolify-app",
     "description": "Editorial professional profile for James Jordan."
   },
@@ -22,7 +22,7 @@
     "projectName": "Apps",
     "serverName": "localhost",
     "resourceKind": "application",
-    "resourceReference": "james-jordan-profile"
+    "resourceReference": "james-jordan-profile-image"
   },
   "deployment": {
     "strategy": "immutable-image-digest",
@@ -59,8 +59,8 @@
   },
   "secretReferences": [],
   "coolifyResources": [
-    {"kind": "coolify-application", "reference": "james-jordan-profile", "role": "production-service"},
-    {"kind": "image-repository", "reference": "ghcr.io/narduk/james-jordan-profile-site", "role": "oci-image"},
+    {"kind": "coolify-application", "reference": "james-jordan-profile-image", "role": "production-service"},
+    {"kind": "image-repository", "reference": "ghcr.io/loganrenz/james-jordan-profile-site", "role": "oci-image"},
     {"kind": "route", "reference": "james.nard.uk", "role": "production-route"},
     {"kind": "desired-state", "reference": "Config/coolify-app.json", "role": "provisioner-manifest"}
   ]
